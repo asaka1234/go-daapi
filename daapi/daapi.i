@@ -1,59 +1,103 @@
-%module(directors="1") daapi
+%module daapi
 
-
-%typemap(cstype) wchar_t* "string"
-
+/*************************************************
+ * C/C++ includes (must be outside %{})
+ *************************************************/
 %{
-// 平台调用约定强制定义
 #if defined(_WIN32) || defined(__CYGWIN__)
-# define SWIG_WINAPI __stdcall
+# define WIN32_LEAN_AND_MEAN
+# define NOMINMAX
+# include <windows.h>
+
 # ifdef __MINGW32__
-#  define SWIG_EXPORT __declspec(dllexport)
+#  define DA_API __declspec(dllexport)
 # else
-#  define SWIG_EXPORT
+#  define DA_API
 # endif
+
+# define SWIGWINAPI __stdcall
 #else
-# define SWIG_WINAPI
-# define SWIG_EXPORT
+# define DA_API
+# define SWIGWINAPI
 #endif
 
+#include <stdint.h>
+#include <string.h>
 
-#define _WINSOCKAPI_        // 禁止 winsock.h
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
+#include "Include\\DADataType.h"
+#include "Include\\DAFutureApi.h"
+#include "Include\\DAFutureStruct.h"
+#include "Include\\DAMarketApi.h"
+#include "Include\\DAMarketStruct.h"
+#include "Include\\DAStockApi.h"
+#include "Include\\DAStockStruct.h"
 
-#include <winsock2.h>       // 必须在 windows.h 前
-#include <windows.h>
-
-#include "Include\DADataType.h"
-#include "Include\DAFutureApi.h"
-#include "Include\DAFutureStruct.h"
-#include "Include\DAMarketApi.h"
-#include "Include\DAMarketStruct.h"
-#include "Include\DAStockApi.h"
-#include "Include\DAStockStruct.h"
 using namespace Directaccess;
 %}
 
-
-%include <typemaps.i>
-%include "carrays.i"
-//-------------------------------------
+/*************************************************
+ * SWIG standard includes (GO SAFE SET)
+ *************************************************/
 %include <stdint.i>
-%include <wchar.i>
+%include <typemaps.i>
 
+/*************************************************
+ * IMPORTANT: DO NOT USE THESE (Go NOT supported)
+ *************************************************/
+// ❌ %include <cstring.i>   <-- REMOVED (causes your error)
+// ❌ directors disabled completely
+// %feature("director") Directaccess::IMarketEvent;
 
+/*************************************************
+ * Type mappings
+ *************************************************/
+
+/* INT64 mapping */
 %apply long long { INT64 };
 
+/*************************************************
+ * SAFE string handling (char*)
+ *************************************************/
 
-// 启用 director 功能以支持从 Go 继承 C++ 类
-//%feature("director") Directaccess::IMarketEvent;
-//%feature("director") Directaccess::IFutureEvent;
+/* C -> Go string */
+%typemap(out) char* {
+    if ($1) {
+        $result = SWIG_FromCharPtr($1);
+    } else {
+        $result = SWIG_FromCharPtr("");
+    }
+}
 
+/* const char* -> Go string */
+%typemap(out) const char* {
+    if ($1) {
+        $result = SWIG_FromCharPtr($1);
+    } else {
+        $result = SWIG_FromCharPtr("");
+    }
+}
 
-//-------------------------------------
+/*************************************************
+ * wchar_t handling (SAFE fallback)
+ * DO NOT expose raw wchar_t* to Go
+ *************************************************/
+%typemap(out) wchar_t* {
+    if ($1) {
+        $result = SWIG_FromCharPtr($1); // assumes UTF-8 compatible or pre-converted
+    } else {
+        $result = SWIG_FromCharPtr("");
+    }
+}
 
+/*************************************************
+ * Force ABI consistency marker (document only)
+ *************************************************/
+%define SWIGWINAPI __stdcall
+%enddef
 
+/*************************************************
+ * API HEADERS
+ *************************************************/
 %include "Include\\DADataType.h"
 %include "Include\\DAFutureApi.h"
 %include "Include\\DAFutureStruct.h"
