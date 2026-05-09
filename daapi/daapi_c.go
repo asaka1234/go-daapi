@@ -1,7 +1,7 @@
 package daapi
 
 /*
-#cgo windows CFLAGS: -I${SRCDIR}/Include
-#cgo windows LDFLAGS: -lws2_32 ${SRCDIR}/DAApi_x64.lib
+#cgo windows CFLAGS: -IInclude
+#cgo windows LDFLAGS: -L. -lDAApi_x64 -lws2_32
 */
 import "C"
