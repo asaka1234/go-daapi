@@ -1,7 +1,7 @@
 %module daapi
 
 /*************************************************
- * C/C++ includes (must be outside %{})
+ * C/C++ includes
  *************************************************/
 %{
 #if defined(_WIN32) || defined(__CYGWIN__)
@@ -36,66 +36,62 @@ using namespace Directaccess;
 %}
 
 /*************************************************
- * SWIG standard includes (GO SAFE SET)
+ * SWIG core
  *************************************************/
 %include <stdint.i>
 %include <typemaps.i>
 
 /*************************************************
- * IMPORTANT: DO NOT USE THESE (Go NOT supported)
- *************************************************/
-// ❌ %include <cstring.i>   <-- REMOVED (causes your error)
-// ❌ directors disabled completely
-// %feature("director") Directaccess::IMarketEvent;
-
-/*************************************************
- * Type mappings
+ * IMPORTANT FIX:
+ * ❌ DO NOT USE custom SWIG string helpers
+ * Go backend does NOT provide SWIG_FromCharPtr
  *************************************************/
 
 /* INT64 mapping */
 %apply long long { INT64 };
 
 /*************************************************
- * SAFE string handling (char*)
+ * SAFE string handling (Go-native behavior)
+ * 👉 REMOVE ALL SWIG_FromCharPtr usage
  *************************************************/
 
-/* C -> Go string */
+/* char* -> Go string (OUT) */
 %typemap(out) char* {
     if ($1) {
-        $result = SWIG_FromCharPtr($1);
+        $result = SWIG_GoString($1);
     } else {
-        $result = SWIG_FromCharPtr("");
+        $result = SWIG_GoString("");
     }
 }
 
-/* const char* -> Go string */
+/* const char* -> Go string (OUT) */
 %typemap(out) const char* {
     if ($1) {
-        $result = SWIG_FromCharPtr($1);
+        $result = SWIG_GoString($1);
     } else {
-        $result = SWIG_FromCharPtr("");
+        $result = SWIG_GoString("");
     }
 }
 
 /*************************************************
- * wchar_t handling (SAFE fallback)
- * DO NOT expose raw wchar_t* to Go
+ * wchar_t SAFE fallback (IMPORTANT)
+ * DO NOT expose raw wchar_t memory ownership
  *************************************************/
 %typemap(out) wchar_t* {
     if ($1) {
-        $result = SWIG_FromCharPtr($1); // assumes UTF-8 compatible or pre-converted
+        $result = SWIG_GoString($1);
     } else {
-        $result = SWIG_FromCharPtr("");
+        $result = SWIG_GoString("");
     }
 }
 
 /*************************************************
- * Force ABI consistency marker (document only)
+ * ABI marker (no effect, documentation only)
  *************************************************/
 %define SWIGWINAPI __stdcall
 %enddef
 
-/*************************************************
+/*************************************************gi
  * API HEADERS
  *************************************************/
 %include "Include\\DADataType.h"
