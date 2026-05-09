@@ -54,18 +54,6 @@ using namespace Directaccess;
 //-------------------------------------
 
 
-%inline %{
-#define LPCSTR char*
-#define LPCWSTR const wchar_t*
-%}
-
-
-typedef __time32_t time_t;
-typedef long long __time32_t;
-
-
-%include "windows.i"
-
 %include "Include\\DADataType.h"
 %include "Include\\DAFutureApi.h"
 %include "Include\\DAFutureStruct.h"
