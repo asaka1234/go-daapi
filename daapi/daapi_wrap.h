@@ -13,4 +13,194 @@
 
 class Swig_memory;
 
+class SwigDirector_IFutureEvent : public Directaccess::IFutureEvent
+{
+ public:
+  SwigDirector_IFutureEvent(int swig_p);
+  void _swig_upcall_OnFrontConnected() {
+    Directaccess::IFutureEvent::OnFrontConnected();
+  }
+  virtual void OnFrontConnected();
+  void _swig_upcall_OnFrontDisconnected(int iReason) {
+    Directaccess::IFutureEvent::OnFrontDisconnected(iReason);
+  }
+  virtual void OnFrontDisconnected(int iReason);
+  void _swig_upcall_OnHeartBeatWarning(int iTimeLapse) {
+    Directaccess::IFutureEvent::OnHeartBeatWarning(iTimeLapse);
+  }
+  virtual void OnHeartBeatWarning(int iTimeLapse);
+  void _swig_upcall_OnRspNeedVerify(bool bFirstLogin,bool bHasSetQA) {
+    Directaccess::IFutureEvent::OnRspNeedVerify(bFirstLogin,bHasSetQA);
+  }
+  virtual void OnRspNeedVerify(bool bFirstLogin,bool bHasSetQA);
+  void _swig_upcall_OnRspUserLogin(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspUserLogin(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspUserLogin(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspUserLogout(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspUserLogout(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspUserLogout(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspVerifyCode(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspVerifyCode(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspVerifyCode(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspSafeVerify(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspSafeVerify(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspSafeVerify(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspSetVerifyQA(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspSetVerifyQA(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspSetVerifyQA(CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspAccount(CFutureRspAccountField *pRspAccount,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspAccount(pRspAccount,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspAccount(CFutureRspAccountField *pRspAccount,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQuestion(CFutureRspQuestionField *pRspVersion,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQuestion(pRspVersion,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQuestion(CFutureRspQuestionField *pRspVersion,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspOrderInsert(CFutureRspOrderInsertField *pRspOrderInsert,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspOrderInsert(pRspOrderInsert,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspOrderInsert(CFutureRspOrderInsertField *pRspOrderInsert,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspOrderModify(CFutureRspOrderModifyField *pRspOrderModify,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspOrderModify(pRspOrderModify,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspOrderModify(CFutureRspOrderModifyField *pRspOrderModify,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspOrderCancel(CFutureRspOrderCancelField *pRspOrderCancel,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspOrderCancel(pRspOrderCancel,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspOrderCancel(CFutureRspOrderCancelField *pRspOrderCancel,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspPasswordUpdate(CFutureRspPasswordUpdateField *pRspPasswordUpdate,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspPasswordUpdate(pRspPasswordUpdate,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspPasswordUpdate(CFutureRspPasswordUpdateField *pRspPasswordUpdate,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRtnTrade(CFutureRtnTradeField *pRtnTrade,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRtnTrade(pRtnTrade,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRtnTrade(CFutureRtnTradeField *pRtnTrade,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRtnOrder(CFutureRtnOrderField *pRtnOrder,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRtnOrder(pRtnOrder,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRtnOrder(CFutureRtnOrderField *pRtnOrder,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRtnCapital(CFutureRtnCapitalField *pRtnCapital,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRtnCapital(pRtnCapital,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRtnCapital(CFutureRtnCapitalField *pRtnCapital,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRtnPosition(CFutureRtnPositionField *pRtnPosition,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRtnPosition(pRtnPosition,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRtnPosition(CFutureRtnPositionField *pRtnPosition,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryOrder(CFutureRspOrderField *pRspOrder,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryOrder(pRspOrder,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryOrder(CFutureRspOrderField *pRspOrder,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryTrade(CFutureRspTradeField *pRspTrade,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryTrade(pRspTrade,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryTrade(CFutureRspTradeField *pRspTrade,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryCapital(CFutureRspCapitalField *pRspCapital,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryCapital(pRspCapital,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryCapital(CFutureRspCapitalField *pRspCapital,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryVersion(CFutureRspVersionField *pRspVersion,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryVersion(pRspVersion,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryVersion(CFutureRspVersionField *pRspVersion,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryPosition(CFutureRspPositionField *pRspPosition,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryPosition(pRspPosition,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryPosition(CFutureRspPositionField *pRspPosition,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryCurrency(CFutureRspCurrencyField *pRspCurrency,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryCurrency(pRspCurrency,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryCurrency(CFutureRspCurrencyField *pRspCurrency,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryExchange(CFutureRspExchangeField *pRspExchange,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryExchange(pRspExchange,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryExchange(CFutureRspExchangeField *pRspExchange,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryStrategy(CFutureRspStrategyField *pRspStrategy,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryStrategy(pRspStrategy,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryStrategy(CFutureRspStrategyField *pRspStrategy,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryCommodity(CFutureRspCommodityField *pRspCommodity,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryCommodity(pRspCommodity,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryCommodity(CFutureRspCommodityField *pRspCommodity,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryInstrument(CFutureRspInstrumentField *pRspInstrument,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryInstrument(pRspInstrument,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryInstrument(CFutureRspInstrumentField *pRspInstrument,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryExchangeTime(CFutureRspExchangeTimeField *pRspExchangeTime,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryExchangeTime(pRspExchangeTime,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryExchangeTime(CFutureRspExchangeTimeField *pRspExchangeTime,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryCommodityTime(CFutureRspCommodityTimeField *pRspCommodityTime,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryCommodityTime(pRspCommodityTime,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryCommodityTime(CFutureRspCommodityTimeField *pRspCommodityTime,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryTotalPosition(CFutureRspTotalPositionField *pRspTotalPosition,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryTotalPosition(pRspTotalPosition,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryTotalPosition(CFutureRspTotalPositionField *pRspTotalPosition,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspQryStrategyDetail(CFutureRspStrategyDetailField *pRspStrategyDetail,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IFutureEvent::OnRspQryStrategyDetail(pRspStrategyDetail,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspQryStrategyDetail(CFutureRspStrategyDetailField *pRspStrategyDetail,CFutureRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
+class SwigDirector_IMarketEvent : public Directaccess::IMarketEvent
+{
+ public:
+  SwigDirector_IMarketEvent(int swig_p);
+  void _swig_upcall_OnFrontConnected() {
+    Directaccess::IMarketEvent::OnFrontConnected();
+  }
+  virtual void OnFrontConnected();
+  void _swig_upcall_OnFrontDisconnected(int iReason) {
+    Directaccess::IMarketEvent::OnFrontDisconnected(iReason);
+  }
+  virtual void OnFrontDisconnected(int iReason);
+  void _swig_upcall_OnHeartBeatWarning(int iTimeLapse) {
+    Directaccess::IMarketEvent::OnHeartBeatWarning(iTimeLapse);
+  }
+  virtual void OnHeartBeatWarning(int iTimeLapse);
+  void _swig_upcall_OnRspRawData(char const *rawData) {
+    Directaccess::IMarketEvent::OnRspRawData(rawData);
+  }
+  virtual void OnRspRawData(char const *rawData);
+  void _swig_upcall_OnRspUserLogin(CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IMarketEvent::OnRspUserLogin(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspUserLogin(CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspTradeDate(CMarketRspTradeDateField *pRspTradeDate,CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IMarketEvent::OnRspTradeDate(pRspTradeDate,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspTradeDate(CMarketRspTradeDateField *pRspTradeDate,CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspBrokerData(CMarketRspBrokerDataField *pRspBrokerData,CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IMarketEvent::OnRspBrokerData(pRspBrokerData,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspBrokerData(CMarketRspBrokerDataField *pRspBrokerData,CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspMarketData(CMarketRspMarketDataField *pRspMarketData,CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IMarketEvent::OnRspMarketData(pRspMarketData,pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspMarketData(CMarketRspMarketDataField *pRspMarketData,CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnRspUserLogout(CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast) {
+    Directaccess::IMarketEvent::OnRspUserLogout(pRspInfo,iRequestID,bIsLast);
+  }
+  virtual void OnRspUserLogout(CMarketRspInfoField *pRspInfo,int iRequestID,bool bIsLast);
+  void _swig_upcall_OnJsonData(CMarketRspJsonDataField *pRspMarketData) {
+    Directaccess::IMarketEvent::OnJsonData(pRspMarketData);
+  }
+  virtual void OnJsonData(CMarketRspJsonDataField *pRspMarketData);
+ private:
+  intgo go_val;
+  Swig_memory *swig_mem;
+};
+
 #endif

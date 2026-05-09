@@ -66,7 +66,6 @@ typedef long long __time32_t;
 
 %include "windows.i"
 
-namespace Directaccess {
 %include "Include\\DADataType.h"
 %include "Include\\DAFutureApi.h"
 %include "Include\\DAFutureStruct.h"
@@ -74,4 +73,3 @@ namespace Directaccess {
 %include "Include\\DAMarketStruct.h"
 %include "Include\\DAStockApi.h"
 %include "Include\\DAStockStruct.h"
-}
