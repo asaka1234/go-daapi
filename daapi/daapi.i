@@ -32,6 +32,7 @@
 #include "Include\DAMarketStruct.h"
 #include "Include\DAStockApi.h"
 #include "Include\DAStockStruct.h"
+using namespace Directaccess;
 %}
 
 
@@ -46,8 +47,8 @@
 
 
 // 启用 director 功能以支持从 Go 继承 C++ 类
-%feature("director") IMarketEvent;
-%feature("director") IFutureEvent;
+%feature("director") Directaccess::IMarketEvent;
+%feature("director") Directaccess::IFutureEvent;
 
 
 //-------------------------------------
