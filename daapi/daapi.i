@@ -47,8 +47,8 @@ using namespace Directaccess;
 
 
 // 启用 director 功能以支持从 Go 继承 C++ 类
-%feature("director") Directaccess::IMarketEvent;
-%feature("director") Directaccess::IFutureEvent;
+//%feature("director") Directaccess::IMarketEvent;
+//%feature("director") Directaccess::IFutureEvent;
 
 
 //-------------------------------------
