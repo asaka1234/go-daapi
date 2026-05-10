@@ -1,55 +1,68 @@
-%module(directors="1", threads="1") daapi
+%module(directors="1") daapi
 
-// 添加这部分：控制Director的初始化时机
-%pragma(go) code = %{
-var directorInit sync.Once
 
-func initDirectors() {
-    directorInit.Do(func() {
-        // 强制在Go运行时稳定后再初始化Director
-        runtime.LockOSThread()
-        runtime.GC()
-    })
-}
-%}
-
-// 包装每个Director类，延迟初始化
-%typemap(gotype) IMarketEvent "interface{}"
-%typemap(in) IMarketEvent * {
-    initDirectors();  // 在每次使用前调用
-    $1 = *($&1_type*)&$input;
-}
+%typemap(cstype) wchar_t* "string"
 
 %{
-#include <stdint.h>
-#include <string.h>
+// 平台调用约定强制定义
+#if defined(_WIN32) || defined(__CYGWIN__)
+# define SWIG_WINAPI __stdcall
+# ifdef __MINGW32__
+#  define SWIG_EXPORT __declspec(dllexport)
+# else
+#  define SWIG_EXPORT
+# endif
+#else
+# define SWIG_WINAPI
+# define SWIG_EXPORT
+#endif
 
-// 添加初始化标志
-static bool g_swig_initialized = false;
 
-void swig_ensure_init() {
-    if (!g_swig_initialized) {
-        // 仅设置标志，不进行实际初始化
-        g_swig_initialized = true;
-    }
-}
+#define _WINSOCKAPI_        // 禁止 winsock.h
+#define WIN32_LEAN_AND_MEAN
+#define NOMINMAX
+
+#include <winsock2.h>       // 必须在 windows.h 前
+//#include <windows.h>
+
+#include "Include\DADataType.h"
+#include "Include\DAFutureApi.h"
+#include "Include\DAFutureStruct.h"
+#include "Include\DAMarketApi.h"
+#include "Include\DAMarketStruct.h"
+using namespace Directaccess;
 %}
 
-// 在所有构造函数中插入初始化检查
-%feature("action") CMarketApi::CreateMarketApi {
-    swig_ensure_init();
-    $result = $function;
-}
 
-/* INT64 mapping */
+%include <typemaps.i>
+%include "carrays.i"
+
+
 %apply long long { INT64 };
 
-%feature("director") IMarketEvent;
+
+// 启用 director 功能以支持从 Go 继承 C++ 类
+%feature("director") Directaccess::IMarketEvent;
+%feature("director") Directaccess::IFutureEvent;
+
+
+//-------------------------------------
+
+
+%inline %{
+#define LPCSTR char*
+#define LPCWSTR const wchar_t*
+%}
+
+
+typedef __time32_t time_t;
+typedef long long __time32_t;
+
+
+//%include "windows.i"
 
 %include "Include\\DADataType.h"
 %include "Include\\DAFutureApi.h"
 %include "Include\\DAFutureStruct.h"
 %include "Include\\DAMarketApi.h"
 %include "Include\\DAMarketStruct.h"
-%include "Include\\DAStockApi.h"
-%include "Include\\DAStockStruct.h"
